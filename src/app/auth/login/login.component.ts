@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     this.auth
       .login(this.form.value["email"], this.form.value["password"])
       .subscribe((res) => {
+        // dispatch action and send data at the payload 
         this.store.dispatch(
           authActions.login({
             user: {
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
             },
           })
         );
+        this.router.navigate(["courses"]);
       });
   }
 }

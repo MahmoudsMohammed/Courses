@@ -6,4 +6,4 @@ export const login = createAction(
   props<{ user: User }>()
 );
 
-export const logout = createReducer("[sidebar] user logout");
+export const logout = createAction("[sidebar] user logout");
