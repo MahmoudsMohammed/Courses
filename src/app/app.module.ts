@@ -20,6 +20,7 @@ import { StoreModule } from "@ngrx/store";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { authGuard } from "./auth/services/auth.guard";
+import { EffectsModule } from '@ngrx/effects';
 
 const routes: Routes = [
   {
@@ -50,6 +51,7 @@ const routes: Routes = [
     AuthModule.forRoot(),
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]),
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })
