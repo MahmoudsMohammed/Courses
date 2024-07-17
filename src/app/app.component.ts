@@ -8,6 +8,9 @@ import {
   NavigationStart,
   Router,
 } from "@angular/router";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { Login, LogOut } from "./auth/store/auth.selectors";
 
 @Component({
   selector: "app-root",
@@ -16,13 +19,14 @@ import {
 })
 export class AppComponent implements OnInit {
   loading = true;
+  isLogin$: Observable<boolean>;
+  isLogout$: Observable<boolean>;
 
   constructor(private router: Router, private store: Store) {}
 
   ngOnInit() {
-    this.store.subscribe((res) => {
-      console.log(res);
-    });
+    this.isLogin$ = this.store.select(Login);
+    this.isLogout$ = this.store.select(LogOut);
 
     this.router.events.subscribe((event) => {
       switch (true) {
