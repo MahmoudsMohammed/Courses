@@ -18,11 +18,13 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthModule } from "./auth/auth.module";
 import { StoreModule } from "@ngrx/store";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { authGuard } from "./auth/services/auth.guard";
 
 const routes: Routes = [
   {
     path: "courses",
+    canActivate: [authGuard],
     loadChildren: () =>
       import("./courses/courses.module").then((m) => m.CoursesModule),
   },
