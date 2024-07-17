@@ -25,6 +25,12 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private store: Store) {}
 
   ngOnInit() {
+    // check for user data in LS
+    if ("user" in localStorage) {
+      this.store.dispatch(
+        authActions.login({ user: JSON.parse(localStorage.getItem("user")) })
+      );
+    }
     this.isLogin$ = this.store.select(Login);
     this.isLogout$ = this.store.select(LogOut);
 
